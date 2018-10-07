@@ -36,7 +36,7 @@ def get_info():
     else:
         firm_name = raw_input("[?] Enter the name or absolute path of the firmware you want to analyse : ")
     firm_brand = raw_input("[?] Enter the brand of the firmware : ")
-    return (firm_name, firm_brand)
+    return (os.path.abspath(firm_name), firm_brand)
 
 
 def run_extractor(firm_name, firm_brand):
@@ -106,6 +106,7 @@ def final_run(image_id):
 def main():
     show_banner()
     firm_name, firm_brand = get_info()
+    os.chdir(firmadyne_path)
     image_id = run_extractor(firm_name, firm_brand)
     
     if image_id == "":
